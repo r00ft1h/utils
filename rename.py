@@ -40,13 +40,16 @@ while True:
             if os.path.isfile(item):
                 fullname = str(Path(item).name)
                 fullname_new = str(fullname).replace(old_word, new_word)
-                shutil.move(item, os.path.join(curdir, fullname_new))
+                item_new = os.path.join(curdir, fullname_new)
+                shutil.move(item, item_new)
+                print(f'Rename file: {item_new}')
                 continue
 
             # Directory found
             if os.path.isdir(item):
                 curdir_new = str(curdir).replace(old_word, new_word)
                 shutil.move(curdir, curdir_new)
+                print(f'Rename file: {curdir_new}')
                 break
     else:
         print('Done.')
