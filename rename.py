@@ -18,6 +18,7 @@ def recur(path):
     return inner()
 
 curdir = sys.argv[1]
+print(curdir)
 filepaths = recur(curdir)
 for filepath in filepaths:
     print(filepath)
