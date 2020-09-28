@@ -1,4 +1,5 @@
 import os
+import sys
 
 
 def recur(path):
@@ -16,7 +17,7 @@ def recur(path):
         return result
     return inner()
 
-curdir = os.getcwd()
+curdir = sys.argv[1]
 filepaths = recur(curdir)
 for filepath in filepaths:
     print(filepath)
