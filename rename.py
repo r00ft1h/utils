@@ -24,8 +24,8 @@ old_word = sys.argv[2]
 new_word = sys.argv[3]
 
 # source_dir = r"C:\Users\Administrator\Desktop\1"
-# old_word = 'agisk'
-# new_word = 'agixx'
+# old_word = 'agixx'
+# new_word = 'agisk'
 
 while True:
     items = recur(source_dir)
@@ -40,13 +40,13 @@ while True:
             if os.path.isfile(item):
                 fullname = str(Path(item).name)
                 fullname_new = str(fullname).replace(old_word, new_word)
-                os.renames(item, os.path.join(curdir, fullname_new))
+                shutil.move(item, os.path.join(curdir, fullname_new))
                 continue
 
             # Directory found
             if os.path.isdir(item):
                 curdir_new = str(curdir).replace(old_word, new_word)
-                os.renames(curdir, curdir_new)
+                shutil.move(curdir, curdir_new)
                 break
     else:
         print('Done.')
