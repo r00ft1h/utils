@@ -1,5 +1,7 @@
 import os
 import sys
+from pathlib import Path
+import shutil
 
 
 def recur(path):
@@ -11,14 +13,41 @@ def recur(path):
                 result.append(filepath)
 
             for folder in folders:
-                if folder != '_backup':
-                    dirpath = os.path.join(curdir, folder)
-                    recur(dirpath)
+                dirpath = os.path.join(curdir, folder)
+                result.append(dirpath)
+                recur(dirpath)
         return result
     return inner()
 
-curdir = sys.argv[1]
-print(curdir)
-filepaths = recur(curdir)
-for filepath in filepaths:
-    print(filepath)
+source_dir = sys.argv[1]
+old_word = sys.argv[2]
+new_word = sys.argv[3]
+
+# source_dir = r"C:\Users\Administrator\Desktop\1"
+# old_word = 'agisk'
+# new_word = 'agixx'
+
+while True:
+    items = recur(source_dir)
+    for item in items:
+        if old_word in item:
+            if os.path.isfile(item):
+                curdir = str(Path(item).parent)
+            else:
+                curdir = item
+
+            # File found
+            if os.path.isfile(item):
+                fullname = str(Path(item).name)
+                fullname_new = str(fullname).replace(old_word, new_word)
+                os.renames(item, os.path.join(curdir, fullname_new))
+                continue
+
+            # Directory found
+            if os.path.isdir(item):
+                curdir_new = str(curdir).replace(old_word, new_word)
+                os.renames(curdir, curdir_new)
+                break
+    else:
+        print('Done.')
+        break
