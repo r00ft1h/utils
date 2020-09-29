@@ -42,7 +42,7 @@ while True:
                 fullname_new = str(fullname).replace(old_word, new_word)
                 item_new = os.path.join(curdir, fullname_new)
                 shutil.move(item, item_new)
-                print(f'Rename File: {item_new}')
+                print(f'Rename File: {fullname_new}')
                 continue
 
             # Directory found
