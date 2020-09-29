@@ -50,7 +50,8 @@ while True:
             if os.path.isdir(item):
                 curdir_new = str(curdir).replace(old_word, new_word)
                 shutil.move(curdir, curdir_new)
-                print(f'Rename Directory: {curdir_new}')
+                #print(f'Rename Directory: {curdir_new}')
+                print('Rename Directory')
                 break
     else:
         print('Done.')
