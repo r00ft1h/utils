@@ -7,13 +7,13 @@ import shutil
 def recur(path):
     result = []
     def inner():
-        for curdir, folders, files in os.walk(path):
+        for curdir_, folders, files in os.walk(path):
             for file in files:
-                filepath = os.path.join(curdir, file)
+                filepath = os.path.join(curdir_, file)
                 result.append(filepath)
 
             for folder in folders:
-                dirpath = os.path.join(curdir, folder)
+                dirpath = os.path.join(curdir_, folder)
                 result.append(dirpath)
                 recur(dirpath)
         return result
